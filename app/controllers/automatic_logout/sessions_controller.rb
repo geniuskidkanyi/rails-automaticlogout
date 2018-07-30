@@ -1,6 +1,6 @@
 module AutomaticLogout
   class SessionsController < ApplicationController
-    skip_before_action :authenticate_user!, only: [:status, :destroy]
+    skip_before_action :require_login, only: [:status, :destroy]
 
     def status
       response = {
