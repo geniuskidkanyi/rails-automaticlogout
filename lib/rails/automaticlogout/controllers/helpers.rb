@@ -20,7 +20,7 @@ module Rails::AutomaticLogout
 
       module ClassMethods
         def automatic_logout_at(time: 1.hour, message: "Session expired! You will be redirect.")
-          prepend_before_filter do |c|
+          prepend_before_action do |c|
             if current_user
               c.session[:seconds] = expires_at_in_seconds(time)
               c.session[:message] = message
